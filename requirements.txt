@@ -1,0 +1,2 @@
+dateparser==0.7.2
+pydblite == 3.0.4
