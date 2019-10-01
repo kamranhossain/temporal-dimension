@@ -1,0 +1,16 @@
+### virtual env ###
+venv/*
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+### VisualStudioCode ###
+.vscode/*
+
+### CSV file ###
+*.csv
+
+### pydblite pdl file ###
+*.pdl
+
