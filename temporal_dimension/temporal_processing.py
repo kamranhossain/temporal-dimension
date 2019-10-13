@@ -7,6 +7,7 @@ from dateutil.relativedelta import relativedelta
 import csv
 import os
 import time
+from holidays_cal.usa.usa_fed_cal import UnitedStates
 
 # function for getting quarter day
 def get_quarters_day(date_obj):
@@ -133,6 +134,14 @@ def get_week_last_day_flag(date,week_end_date):
     if date == week_end_date:
         return 1
     return 0
+# check is us_fed_holiday or not
+def get_is_us_holiday(cal, date):
+    cal=cal
+    if date == cal.is_holiday(date):
+        return 1
+    else:
+        return 0 
+
 
 # create pydblite database table
 date_table = Base('temporal_data.pdl')
@@ -190,7 +199,8 @@ if not date_table.exists():
         'quarter_last_day_flag',
         'year_first_day_flag',
         'year_last_day_flag',
-        'leap_year_flag'
+        'leap_year_flag',
+        'is_holiday'
     )
     # create index
     date_table.create_index('date','julian_date_num','sequence')
@@ -284,7 +294,7 @@ for item in range(day_num):
     week_last_day_flag = get_week_last_day_flag(date,week_end_date)
     # julian_date_num = date_to_jd(year_num,month_num,day_num)
     julian_date_num = float(date.strftime('%y%j'))
-    
+    is_holiday = get_is_us_holiday(UnitedStates(), date)
     # insert data on table.
     date_table.insert(
         date=date,
@@ -336,7 +346,8 @@ for item in range(day_num):
         quarter_last_day_flag =quarter_last_day_flag,
         year_first_day_flag =year_first_day_flag,
         year_last_day_flag =year_last_day_flag,
-        leap_year_flag =leap_year_flag
+        leap_year_flag =leap_year_flag,
+        is_holiday = is_holiday
         )
 # save data.       
 date_table.commit()
