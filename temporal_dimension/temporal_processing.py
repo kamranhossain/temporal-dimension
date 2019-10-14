@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 import csv
 import os
 import time
-from holidays_cal.usa.usa_fed_cal import UnitedStates
+from workalendar.usa import UnitedStates
 
 # function for getting quarter day
 def get_quarters_day(date_obj):
@@ -135,9 +135,9 @@ def get_week_last_day_flag(date,week_end_date):
         return 1
     return 0
 # check is us_fed_holiday or not
-def get_is_us_holiday(cal, date):
+def get_is_holiday(cal, date):
     cal=cal
-    if date == cal.is_holiday(date):
+    if cal.is_holiday(date)==True:
         return 1
     else:
         return 0 
@@ -207,7 +207,7 @@ if not date_table.exists():
 
 # validate date input.
 while True:
-    # imput start date string
+    # input start date string
     start_date_string = input("Enter start date with format mm/dd/yyyy: ")
     try:
         valid_date = time.strptime(start_date_string, '%m/%d/%Y')
@@ -294,7 +294,7 @@ for item in range(day_num):
     week_last_day_flag = get_week_last_day_flag(date,week_end_date)
     # julian_date_num = date_to_jd(year_num,month_num,day_num)
     julian_date_num = float(date.strftime('%y%j'))
-    is_holiday = get_is_us_holiday(UnitedStates(), date)
+    is_holiday = get_is_holiday(UnitedStates(), date)
     # insert data on table.
     date_table.insert(
         date=date,
