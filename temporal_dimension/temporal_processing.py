@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 import csv
 import os
 import time
-from workalendar import africa, america, europe, asia, oceania, usa
+from country_state import instances
 
 # function for getting quarter day
 def get_quarters_day(date_obj):
@@ -149,6 +149,12 @@ def get_holiday_name(cal, date):
     if cal.get_holiday_label(date):
         return cal.get_holiday_label(date)
 
+# get country_name or state_name
+def get_country_or_state(country_name, state_name=None):
+    if state_name is None:
+        return country_name
+    else:
+        return state_name
 
 # create pydblite database table
 date_table = Base('temporal_data.pdl')
@@ -236,6 +242,31 @@ while True:
     except ValueError:
         print("That's not an int!")
 
+while True:
+    # input the name of the Country which date will be generated and process data.
+    country = input("Which Country: ")
+    try:
+        if country:
+            country_name = instances[country]
+        elif country is None:
+            print("Enter the Country Name")
+        
+        break
+    except KeyError:
+        print("Country {} is not available!".format(country))
+
+while True:
+    # input the name of the State which date will be generated and process data.
+    state = input("Which State: ")
+    try:
+        if state:
+            state_name = instances[state]
+        else:
+            state_name = None
+        break
+    except KeyError:
+        print("State {} is not available!".format(state))
+        
 # calculate end date.
 end_date = start_date + relativedelta(years=int(num_of_year))
 
@@ -302,8 +333,8 @@ for item in range(day_num):
     week_last_day_flag = get_week_last_day_flag(date,week_end_date)
     # julian_date_num = date_to_jd(year_num,month_num,day_num)
     julian_date_num = float(date.strftime('%y%j'))
-    is_holiday = get_is_holiday(usa.UnitedStates(), date)
-    holiday_name = get_holiday_name(usa.UnitedStates(), date)
+    is_holiday = get_is_holiday(get_country_or_state(country_name, state_name), date)
+    holiday_name = get_holiday_name(get_country_or_state(country_name, state_name), date)
     # insert data on table.
     date_table.insert(
         date=date,
