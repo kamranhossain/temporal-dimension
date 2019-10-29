@@ -8,6 +8,7 @@ import csv
 import os
 import time
 from country_state import instances
+from workalendar.core import MON, TUE, WED, THU, FRI, SAT, SUN
 
 # function for getting quarter day
 def get_quarters_day(date_obj):
@@ -214,10 +215,11 @@ if not date_table.exists():
         'year_last_day_flag',
         'leap_year_flag',
         'is_holiday',
-        'holiday_name'
+        'holiday_name',
+        'nth_weekday'
     )
     # create index
-    date_table.create_index('date','julian_date_num','sequence')
+    date_table.create_index('date','julian_date_num','sequence','nth_weekday')
 
 # validate date input.
 while True:
@@ -335,6 +337,7 @@ for item in range(day_num):
     julian_date_num = float(date.strftime('%y%j'))
     is_holiday = get_is_holiday(get_country_or_state(country_name, state_name), date)
     holiday_name = get_holiday_name(get_country_or_state(country_name, state_name), date)
+    nth_weekday = (year_num, month_num, week_day_num, month_week_num)
     # insert data on table.
     date_table.insert(
         date=date,
@@ -388,7 +391,8 @@ for item in range(day_num):
         year_last_day_flag =year_last_day_flag,
         leap_year_flag =leap_year_flag,
         is_holiday = is_holiday,
-        holiday_name =holiday_name
+        holiday_name =holiday_name,
+        nth_weekday=nth_weekday
         )
 # save data.       
 date_table.commit()
