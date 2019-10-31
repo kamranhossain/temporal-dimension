@@ -26,15 +26,24 @@ To run the app on your local machine, you need Python 3.6+ and pydblite(in-memor
 3.  Run program
 
         python temporal_processing.py
+        (temporal_processing.py program will generate tables of dates and related infoes)
 
 4.  Test with valid input date
 
+        Inputs example: 
         Enter start date with format mm/dd/yyyy:  01/01/2010
         How many years of data(after start date): 2
+        Which Country: UnitedStates
+        Which State:
 
     Here start date = 01/01/2010 and
     Numbers of years = 2 are given input.
-    Form those two inputs calculate process temporal data between start and end date range. And generate temporal_data.pdl and temporal_data.csv file
+    Give the country name(must)
+    Give the state name(optional)
+
+    Caution:This packages support all the country and state in workalendar until version 7.0.0. Adding new country and states will be on going process.
+
+    Form those three or four inputs calculate process temporal data between start and end date range. And generate in-memory DB data temporal_data.pdl and temporal_data.csv file
 
 5. Test with invalid input date:
 
@@ -43,7 +52,8 @@ To run the app on your local machine, you need Python 3.6+ and pydblite(in-memor
         Enter start date with format mm/dd/yyyy: 31/31/2017
         Invalid date!.Please enter valid date
         Enter start date with format mm/dd/yyyy:
-
+        Same way to check integer year, valid Country and State
+        
 6. Access data using index field.
 
     Here date ,julian date num and sequence are index fields.
@@ -70,3 +80,9 @@ To run the app on your local machine, you need Python 3.6+ and pydblite(in-memor
     search with sequence number
     
         >>> date_table._sequence[214]
+
+7.  There are more files like time_processing.py and retrieve_data.py.
+    time_processing.py generate csv file of temporal time of 24 hours as business purspective.
+    retrieve_data.py is the functions for retrieving data from in memory DB table to get data faster than function.
+
+    There are also profiling folder where checking performance of function calling from direct library and also retrieve from in-memory DB. cProfile and time_ns(3.7+) use for checking function calls and checking performance and time uses.
