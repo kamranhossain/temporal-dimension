@@ -12,7 +12,9 @@ Requirements
 Installation on Development Machine
 -----------------------------------
 
-To run the app on your local machine, you need Python 3.6+ and pydblite(in-memory database engine installed on your computer.
+Download code from github: git clone https://github.com/kamranhossain/temporal-dimension.git
+
+To run the app on your local machine, you need Python 3.6+ and pydblite(in-memory database engine) installed on your computer.
 
 1.  Create and activate virtualenv:
 
