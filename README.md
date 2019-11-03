@@ -95,5 +95,7 @@ To run the app on your local machine, you need Python 3.6+ and pydblite(in-memor
 
 Sponsors
 --------
-BaiB Oy, Turku Finland  https://www.baib.co.ke/
-Interspeed Digital, Dhaka Bangladesh  https://interspeeddigital.com/
+
+* BaiB Oy, Turku Finland <https://www.baib.co.ke/>
+  
+* Interspeed Digital, Dhaka Bangladesh <https://interspeeddigital.com/>
