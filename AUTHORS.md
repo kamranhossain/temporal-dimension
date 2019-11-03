@@ -2,6 +2,11 @@
 Credits
 =======
 
+Concept Provider
+----------------
+
+* Ray Garcia <ray@bcap.biz>
+
 Development Lead
 ----------------
 
@@ -10,4 +15,6 @@ Development Lead
 Contributors
 ------------
 
-None yet. Why not be the first?
+*  Md Emran Hossain(Rayhan) <rayhan@cookupsapp.com>
+
+*  Jahirul Islam Monir <jimonir004@gmail.com>

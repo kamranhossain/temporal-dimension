@@ -3,6 +3,10 @@ Temporal Dimension
 
 Processing temporal dimension data for human
 
+Project Concept
+---------------
+For project concept check the CONCEPT.md file.
+
 Requirements
 ------------
 1.  Python 3+
@@ -88,3 +92,8 @@ To run the app on your local machine, you need Python 3.6+ and pydblite(in-memor
     retrieve_data.py is the functions for retrieving data from in memory DB table to get data faster than function.
 
     There are also profiling folder where checking performance of function calling from direct library and also retrieve from in-memory DB. cProfile and time_ns(3.7+) use for checking function calls and checking performance and time uses.
+
+Sponsors
+--------
+BaiB Oy, Turku Finland  https://www.baib.co.ke/
+Interspeed Digital, Dhaka Bangladesh  https://interspeeddigital.com/
